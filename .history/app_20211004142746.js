@@ -90,4 +90,3 @@ console.log(verticals);
 console.log(horizontals);
 
 
-

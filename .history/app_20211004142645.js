@@ -89,5 +89,3 @@ console.log(grid);
 console.log(verticals);
 console.log(horizontals);
 
-
-

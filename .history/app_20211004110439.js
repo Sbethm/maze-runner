@@ -51,9 +51,7 @@
 //====== Building Canvas
 const { Engine, World, Runner, Render, Bodies} = Matter;
 
-//====== Config Variables
-const cells = 3;
-const width = 600;
+const width = 800;
 const height = 600;
 
 const engine = Engine.create();
@@ -72,22 +70,11 @@ Runner.run(Runner.create(), engine);
 
 //====== Walls of Canvas
 const walls = [
-    Bodies.rectangle(width / 2, 0, width, 50, {isStatic: true}),
-    Bodies.rectangle(width, height / 2, 50, height, {isStatic: true}),
-    Bodies.rectangle(width / 2, height, width, 50, {isStatic: true}),
-    Bodies.rectangle(0, height / 2, 50, height, {isStatic: true})
+    Bodies.rectangle(400, 0, width, 50, {isStatic: true}),
+    Bodies.rectangle(width, 300, 50, 600, {isStatic: true}),
+    Bodies.rectangle(400, height, width, 50, {isStatic: true}),
+    Bodies.rectangle(0, 300, 50, 600, {isStatic: true})
 ];
 
 World.add(world, walls);
-
-//====== Maze Generation
-const grid = Array(cells).fill(null).map(()=> Array(cells).fill(false));
-const verticals = Array(cells).fill(null).map(()=> Array(cells - 1).fill(false));
-const horizontals = Array(cells - 1).fill(null).map(()=> Array(cells).fill(false));
-
-console.log(grid);
-console.log(verticals);
-console.log(horizontals);
-
-
 
