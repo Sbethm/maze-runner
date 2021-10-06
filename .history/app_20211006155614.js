@@ -52,7 +52,7 @@
 const { Engine, World, Runner, Render, Bodies, Body} = Matter;
 
 //====== Config Variables
-const cells = 15;
+const cells = 5;
 const width = 600;
 const height = 600;
 const wallsThickness = 5;
@@ -61,8 +61,6 @@ const unitLength = width / cells;
 const goalRadius = unitLength / 4;
 
 const engine = Engine.create();
-    //Turn off gravity
-    engine.world.gravity.y = 0;
 const {world} = engine;
 const render = Render.create({
     element: document.body,
@@ -197,16 +195,16 @@ World.add(world, playerPiece);
 document.addEventListener('keydown', event => {
     const { x, y } = playerPiece.velocity;
     if(event.keyCode === 87) {
-        Body.setVelocity(playerPiece, { x, y: y - 5 });
+        Body.setVelocity()
     }
     if(event.keyCode === 68) {
-        Body.setVelocity(playerPiece, { x: x + 5, y });
+        console.log('Move right');
     }
     if(event.keyCode === 83) {
-        Body.setVelocity(playerPiece, { x, y: y + 5 });
+        console.log('Move down');
     }
     if(event.keyCode === 65) {
-        Body.setVelocity(playerPiece, { x: x - 5, y });
+        console.log('Move left');
     }
 })
 

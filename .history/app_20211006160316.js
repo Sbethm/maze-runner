@@ -62,7 +62,7 @@ const goalRadius = unitLength / 4;
 
 const engine = Engine.create();
     //Turn off gravity
-    engine.world.gravity.y = 0;
+engine.world.gravity.y = 0;
 const {world} = engine;
 const render = Render.create({
     element: document.body,

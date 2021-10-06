@@ -49,20 +49,17 @@
 
 
 //====== Building Canvas
-const { Engine, World, Runner, Render, Bodies, Body} = Matter;
+const { Engine, World, Runner, Render, Bodies} = Matter;
 
 //====== Config Variables
-const cells = 15;
+const cells = 3;
 const width = 600;
 const height = 600;
 const wallsThickness = 5;
-const boarderThickness = 10;
 const unitLength = width / cells;
-const goalRadius = unitLength / 4;
+
 
 const engine = Engine.create();
-    //Turn off gravity
-    engine.world.gravity.y = 0;
 const {world} = engine;
 const render = Render.create({
     element: document.body,
@@ -78,10 +75,10 @@ Runner.run(Runner.create(), engine);
 
 //====== Walls of Canvas
 const walls = [
-    Bodies.rectangle(width / 2, 0, width, boarderThickness, {isStatic: true}),
-    Bodies.rectangle(width, height / 2, boarderThickness, height, {isStatic: true}),
-    Bodies.rectangle(width / 2, height, width, boarderThickness, {isStatic: true}),
-    Bodies.rectangle(0, height / 2, boarderThickness, height, {isStatic: true})
+    Bodies.rectangle(width / 2, 0, width, 50, {isStatic: true}),
+    Bodies.rectangle(width, height / 2, 50, height, {isStatic: true}),
+    Bodies.rectangle(width / 2, height, width, 50, {isStatic: true}),
+    Bodies.rectangle(0, height / 2, 50, height, {isStatic: true})
 ];
 
 World.add(world, walls);
@@ -186,27 +183,8 @@ verticals.forEach((row, rowIndex) => {
     });
 });
 
-//====== Goal & Player Piece
-const goal =Bodies.circle(width - unitLength / 2, height - unitLength / 2, goalRadius, {isStatic: true});
-const playerPiece =Bodies.circle(unitLength / 2, unitLength / 2, goalRadius);
+//====== Goal
+const goal =Bodies.circle(width - unitLength / 2, width - unitLength / 2, 15, {isStatic: true});
 
 World.add(world, goal);
-World.add(world, playerPiece);
-
-//====== Player Controls
-document.addEventListener('keydown', event => {
-    const { x, y } = playerPiece.velocity;
-    if(event.keyCode === 87) {
-        Body.setVelocity(playerPiece, { x, y: y - 5 });
-    }
-    if(event.keyCode === 68) {
-        Body.setVelocity(playerPiece, { x: x + 5, y });
-    }
-    if(event.keyCode === 83) {
-        Body.setVelocity(playerPiece, { x, y: y + 5 });
-    }
-    if(event.keyCode === 65) {
-        Body.setVelocity(playerPiece, { x: x - 5, y });
-    }
-})
-
+World.add(world, goal2);

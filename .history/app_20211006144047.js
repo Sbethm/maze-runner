@@ -49,26 +49,22 @@
 
 
 //====== Building Canvas
-const { Engine, World, Runner, Render, Bodies, Body} = Matter;
+const { Engine, World, Runner, Render, Bodies} = Matter;
 
 //====== Config Variables
-const cells = 15;
+const cells = 3;
 const width = 600;
 const height = 600;
-const wallsThickness = 5;
-const boarderThickness = 10;
+
 const unitLength = width / cells;
-const goalRadius = unitLength / 4;
 
 const engine = Engine.create();
-    //Turn off gravity
-    engine.world.gravity.y = 0;
 const {world} = engine;
 const render = Render.create({
     element: document.body,
     engine: engine,
     options: {
-        //wireframes: false,
+        // wireframes: false,
         width,
         height
     }
@@ -78,10 +74,10 @@ Runner.run(Runner.create(), engine);
 
 //====== Walls of Canvas
 const walls = [
-    Bodies.rectangle(width / 2, 0, width, boarderThickness, {isStatic: true}),
-    Bodies.rectangle(width, height / 2, boarderThickness, height, {isStatic: true}),
-    Bodies.rectangle(width / 2, height, width, boarderThickness, {isStatic: true}),
-    Bodies.rectangle(0, height / 2, boarderThickness, height, {isStatic: true})
+    Bodies.rectangle(width / 2, 0, width, 50, {isStatic: true}),
+    Bodies.rectangle(width, height / 2, 50, height, {isStatic: true}),
+    Bodies.rectangle(width / 2, height, width, 50, {isStatic: true}),
+    Bodies.rectangle(0, height / 2, 50, height, {isStatic: true})
 ];
 
 World.add(world, walls);
@@ -152,8 +148,6 @@ const iteratingMazeWalls = (row, column) => {
 iteratingMazeWalls(startRow, startColumn);
 
 console.log(grid);
-console.log(verticals);
-console.log(horizontals);
 
 
 // for(horizontal of horizontals) {
@@ -164,49 +158,12 @@ console.log(horizontals);
 //     })
 // }
 
-horizontals.forEach((row, rowIndex) => {
-    row.forEach((open, colIndex) => {
+horizontals.forEach(row, rowIndex => {
+    row.forEach(open, colIndex => {
         if (open){
             return;
         }
 
-        const wall = Bodies.rectangle(colIndex * unitLength + unitLength / 2, rowIndex * unitLength + unitLength, unitLength, wallsThickness, {isStatic: true});
-        World.add(world, wall);
-    });
-});
-
-verticals.forEach((row, rowIndex) => {
-    row.forEach((open, colIndex) => {
-        if (open){
-            return;
-        }
-
-        const wall = Bodies.rectangle(colIndex * unitLength + unitLength, rowIndex * unitLength + unitLength / 2, wallsThickness, unitLength, {isStatic: true});
-        World.add(world, wall);
-    });
-});
-
-//====== Goal & Player Piece
-const goal =Bodies.circle(width - unitLength / 2, height - unitLength / 2, goalRadius, {isStatic: true});
-const playerPiece =Bodies.circle(unitLength / 2, unitLength / 2, goalRadius);
-
-World.add(world, goal);
-World.add(world, playerPiece);
-
-//====== Player Controls
-document.addEventListener('keydown', event => {
-    const { x, y } = playerPiece.velocity;
-    if(event.keyCode === 87) {
-        Body.setVelocity(playerPiece, { x, y: y - 5 });
-    }
-    if(event.keyCode === 68) {
-        Body.setVelocity(playerPiece, { x: x + 5, y });
-    }
-    if(event.keyCode === 83) {
-        Body.setVelocity(playerPiece, { x, y: y + 5 });
-    }
-    if(event.keyCode === 65) {
-        Body.setVelocity(playerPiece, { x: x - 5, y });
-    }
+        const wall = Bodies.rectangle(colIndex * unitLength + unitLength / 2, rowIndex +1, {isStatic: true});
+    })
 })
-
