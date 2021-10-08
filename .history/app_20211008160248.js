@@ -227,9 +227,11 @@ Events.on(engine, 'collisionStart', event => {
                     Body.setStatic(body, false);
                 }
             })
+            
+
 
             setTimeout(() => {
-                location.reload();
+                n += 2;
             }, 5000)
             
         }

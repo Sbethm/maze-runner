@@ -52,15 +52,15 @@
 const { Engine, World, Runner, Render, Bodies, Body, Events} = Matter;
 
 //====== Config Variables
-let n = 0;
-const cellsHorizontal = 6 + n;
-const cellsVertical = 4 + n;
+const cellsHorizontal = 6;
+const cellsVertical = 4;
 const width = window.innerWidth;
 const height = window.innerHeight;
 const wallsThickness = 5;
 const boarderThickness = 10;
 const unitLengthX = width / cellsHorizontal;
 const unitLengthY = height / cellsVertical;
+const goalRadius = unitLengthX / 4;
 
 const engine = Engine.create();
     //Turn off gravity
@@ -128,7 +128,7 @@ const iteratingMazeWalls = (row, column) => {
     for(neighbor of neighbors) {
         const [nextRow, nextColumn, direction] = neighbor;
     //See if that neighbor is out of bounds
-        if(nextRow < 0 || nextRow >= cellsVertical || nextColumn < 0 || nextColumn >= cellsHorizontal) {
+        if(nextRow < 0 || nextRow >= cells || nextColumn < 0 || nextColumn >= cells) {
             continue;
         }
     //if we have visited that neighbor, continue to next neighbor
@@ -161,7 +161,7 @@ horizontals.forEach((row, rowIndex) => {
             return;
         }
 
-        const wall = Bodies.rectangle(colIndex * unitLengthX + unitLengthX / 2, rowIndex * unitLengthY + unitLengthY, unitLengthX, wallsThickness, 
+        const wall = Bodies.rectangle(colIndex * unitLength + unitLength / 2, rowIndex * unitLength + unitLength, unitLength, wallsThickness, 
             {
                 label: 'wall',
                 isStatic: true
@@ -175,7 +175,7 @@ verticals.forEach((row, rowIndex) => {
         if (open){
             return;
         }
-        const wall = Bodies.rectangle(colIndex * unitLengthX + unitLengthX, rowIndex * unitLengthY + unitLengthY / 2, wallsThickness, unitLengthY, 
+        const wall = Bodies.rectangle(colIndex * unitLength + unitLength, rowIndex * unitLength + unitLength / 2, wallsThickness, unitLength, 
             {
                 label: 'wall',
                 isStatic: true
@@ -185,13 +185,12 @@ verticals.forEach((row, rowIndex) => {
 });
 
 //====== Goal & Player Piece
-const radius = Math.min(unitLengthX, unitLengthY) / 4;
-const goal =Bodies.circle(width - unitLengthX / 2, height - unitLengthY / 2, radius, 
+const goal =Bodies.circle(width - unitLength / 2, height - unitLength / 2, goalRadius, 
     {
         label: 'goal',
         isStatic: true
     });
-const playerPiece =Bodies.circle(unitLengthX / 2, unitLengthY / 2, radius,
+const playerPiece =Bodies.circle(unitLength / 2, unitLength / 2, goalRadius,
     {
         label: 'player'
     });
@@ -227,15 +226,10 @@ Events.on(engine, 'collisionStart', event => {
                     Body.setStatic(body, false);
                 }
             })
-
-            setTimeout(() => {
-                location.reload();
-            }, 5000)
+            
             
         }
     });
 });
-
-
 
 //======

@@ -52,9 +52,8 @@
 const { Engine, World, Runner, Render, Bodies, Body, Events} = Matter;
 
 //====== Config Variables
-let n = 0;
-const cellsHorizontal = 6 + n;
-const cellsVertical = 4 + n;
+const cellsHorizontal = 6;
+const cellsVertical = 4;
 const width = window.innerWidth;
 const height = window.innerHeight;
 const wallsThickness = 5;
@@ -227,10 +226,10 @@ Events.on(engine, 'collisionStart', event => {
                     Body.setStatic(body, false);
                 }
             })
-
-            setTimeout(() => {
-                location.reload();
-            }, 5000)
+        
+        setTimeout(() => {
+            
+        })
             
         }
     });
