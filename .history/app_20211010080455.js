@@ -198,7 +198,7 @@ const goal =Bodies.circle(width - unitLengthX / 2, height - unitLengthY / 2, rad
         label: 'goal',
         isStatic: true,
         render: {
-            fillStyle: 'aqua'
+            fillStyle: 'red'
         }
     });
 const playerPiece =Bodies.circle(unitLengthX / 2, unitLengthY / 2, radius,
@@ -230,8 +230,6 @@ document.addEventListener('keydown', event => {
 })
 
 //====== Win Condition
-const winner = document.querySelector('.hidden');
-
 Events.on(engine, 'collisionStart', event => {
     event.pairs.forEach((collision) => {
         const label = ['goal', 'player'];
@@ -243,7 +241,7 @@ Events.on(engine, 'collisionStart', event => {
                 }
             })
 
-            winner.classList.remove('hidden');
+            
 
             setTimeout(() => {
                 location.reload();

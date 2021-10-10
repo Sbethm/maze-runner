@@ -17,10 +17,5 @@ body {
     line-height: 200%;
     background-color: limegreen;
     z-index: 9;
-    opacity: 1;
-    transition: opacity 0.5s ease-in;
-}
-
-.hidden {
     opacity: 0;
 }

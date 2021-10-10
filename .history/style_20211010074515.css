@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+}
+
+.winner-banner {
+    margin: 150px;
+    text-align: center;
+    color: #000;
+    background-color: limegreen;
+}

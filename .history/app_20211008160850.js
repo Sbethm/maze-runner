@@ -70,7 +70,7 @@ const render = Render.create({
     element: document.body,
     engine: engine,
     options: {
-        wireframes: false,
+        wireframes: true
         width,
         height
     }
@@ -165,10 +165,7 @@ horizontals.forEach((row, rowIndex) => {
         const wall = Bodies.rectangle(colIndex * unitLengthX + unitLengthX / 2, rowIndex * unitLengthY + unitLengthY, unitLengthX, wallsThickness, 
             {
                 label: 'wall',
-                isStatic: true,
-                render: {
-                    fillStyle: 'magenta'
-                }
+                isStatic: true
             });
         World.add(world, wall);
     });
@@ -182,10 +179,7 @@ verticals.forEach((row, rowIndex) => {
         const wall = Bodies.rectangle(colIndex * unitLengthX + unitLengthX, rowIndex * unitLengthY + unitLengthY / 2, wallsThickness, unitLengthY, 
             {
                 label: 'wall',
-                isStatic: true,
-                render: {
-                    fillStyle: 'magenta'
-                }
+                isStatic: true
             });
         World.add(world, wall);
     });
@@ -196,17 +190,11 @@ const radius = Math.min(unitLengthX, unitLengthY) / 4;
 const goal =Bodies.circle(width - unitLengthX / 2, height - unitLengthY / 2, radius, 
     {
         label: 'goal',
-        isStatic: true,
-        render: {
-            fillStyle: 'aqua'
-        }
+        isStatic: true
     });
 const playerPiece =Bodies.circle(unitLengthX / 2, unitLengthY / 2, radius,
     {
-        label: 'player',
-        render: {
-            fillStyle: 'blue'
-        }
+        label: 'player'
     });
 
 World.add(world, goal);
@@ -230,8 +218,6 @@ document.addEventListener('keydown', event => {
 })
 
 //====== Win Condition
-const winner = document.querySelector('.hidden');
-
 Events.on(engine, 'collisionStart', event => {
     event.pairs.forEach((collision) => {
         const label = ['goal', 'player'];
@@ -242,8 +228,6 @@ Events.on(engine, 'collisionStart', event => {
                     Body.setStatic(body, false);
                 }
             })
-
-            winner.classList.remove('hidden');
 
             setTimeout(() => {
                 location.reload();

@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+}
+
+.winner-banner {
+    position: fixed;
+    margin: 150px;
+    width: ;
+    text-align: center;
+    color: #000;
+    font-size: 5rem;
+    line-height: 200%;
+    background-color: limegreen;
+}

@@ -198,7 +198,7 @@ const goal =Bodies.circle(width - unitLengthX / 2, height - unitLengthY / 2, rad
         label: 'goal',
         isStatic: true,
         render: {
-            fillStyle: 'aqua'
+            fillStyle: 'red'
         }
     });
 const playerPiece =Bodies.circle(unitLengthX / 2, unitLengthY / 2, radius,
@@ -243,7 +243,7 @@ Events.on(engine, 'collisionStart', event => {
                 }
             })
 
-            winner.classList.remove('hidden');
+            winner.classList
 
             setTimeout(() => {
                 location.reload();

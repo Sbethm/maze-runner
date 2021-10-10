@@ -1,26 +1,17 @@
 body {
     margin: 0;
     box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    d
 }
 
 .winner-banner {
     position: fixed;
     margin: 2em;
-    padding: 2em;
-    /* width: 100vw; */
+    width: 100vw;
     text-align: center;
     color: #000;
     font-size: 5rem;
     line-height: 200%;
     background-color: limegreen;
     z-index: 9;
-    opacity: 1;
-    transition: opacity 0.5s ease-in;
-}
-
-.hidden {
-    opacity: 0;
 }

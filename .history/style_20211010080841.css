@@ -18,7 +18,7 @@ body {
     background-color: limegreen;
     z-index: 9;
     opacity: 1;
-    transition: opacity 0.5s ease-in;
+    transition: all 0.5 ease-in;
 }
 
 .hidden {
